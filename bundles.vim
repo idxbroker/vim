@@ -27,8 +27,11 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 "NeoBundle 'beloglazov/vim-textobj-quotes'
 " lean & mean status/tabline for vim that's light as air
 NeoBundle 'bling/vim-airline'
-" Make gvim-only colorschemes work transparently in terminal vim
-NeoBundle 'godlygeek/csapprox'
+
+if has('gui') || v:version > 703
+	" Make gvim-only colorschemes work transparently in terminal vim
+	NeoBundle 'godlygeek/csapprox'
+endif
 
 " BufExplorer Plugin for Vim
 NeoBundle 'jlanzarotta/bufexplorer'
@@ -53,7 +56,7 @@ NeoBundle 'mbbill/undotree'
 if has('python')
 	" Swap parameters of a function or a comma separated list with a single command.
 	NeoBundle 'mutewinter/swap-parameters'
-fi
+endif
 " Start a * or # search from a visual block
 NeoBundle 'nelstrom/vim-visual-star-search'
 " automatically try to detect the kind of indentation in your file and set Vim's options to keep it that way.
