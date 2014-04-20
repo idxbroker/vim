@@ -1,10 +1,11 @@
+set t_Co=256 " Sets terminal to use 256 colors for CSApprox
+
 source ~/.vim/bundles.vim
 
 colorscheme dante2
 source ~/.vim/idx.vim
 " set commands {{{
 "set fo-=t fo-=o fo-=r " don't continue comments after singline line comments or when using oO, also don't wrap text
-set t_Co=256 " Sets terminal to use 256 colors for CSApprox
 set cmdheight=2 " Number of screen lines to use for the ocmmand-line
 set backspace=indent,eol,start " places <bs> and co. work
 set ruler " Show line number in bottom-right of screen
@@ -28,7 +29,8 @@ set gdefault " s// has the g flag enabled by default, add g to disable.
 set sidescrolloff=10 " leave some chars next to window edge (w/ nowrap)
 set scrolloff=1 " Always have at least one line above or below the cursor.
 set foldmethod=marker
-set wildignore+=*.svn,*.csv,vendor " Ignore .svn directories for file completion and such.
+set foldlevelstart=99 " Default to folds open
+set wildignore+=*.svn,vendor " Ignore .svn directories and composer vendor directory for file completion and such.
 set textwidth=115 " Maximum width of text that is being inserted
 set laststatus=2
 "set spell " Turn on spell checking
@@ -53,7 +55,6 @@ endif
 " Ignore .git and .svn directories, the vendor folder, .csv and .log files
 let g:ctrlp_custom_ignore = {
 	\ 'dir': '\v(^\/vendor|\/\.(git|svn)$)',
-	\ 'file': '\v(*.csv|*.log)$'
 	\ }
 " Set the root marker to 'vendor' (this is how it knows what the root of the project is
 let g:ctrlp_root_markers = [ 'vendor' ]
@@ -80,15 +81,6 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tabline#close_symbol = ''
 let g:airline#extensions#whitespace#checks = [ 'indent' ]
 
-" signify options
-let g:signify_vcs_list = [ 'svn' ] " Only use signify for files in svn repos, gitgutter works better for git
-let g:signify_sign_change = '~' " ~ makes more sense for changes, I think.
-let g:signify_sign_delete = '-' " - makes more sense for deletes, I think.
-" gitgutter options
-let g:gitgutter_sign_modified = '~ ' " ~ makes more sense for changes, I think.
-let g:gitgutter_sign_removed = '- ' " - makes more sense for deletes, I think.
-let g:gitgutter_sign_modified_removed = '~-'
-
 " phpcomplete options
 let g:phpcomplete_index_composer_command = 'composer'
 
@@ -113,9 +105,6 @@ let PHP_removeCRwhenUnix = 1
 let PHP_autoformatcomment = 0
 let PHP_default_indenting = 0
 let PHP_vintage_case_default_indent = 1
-
-" VCSCommand options
-let VCSCommandMapPrefix = "<leader>v"
 
 " ft-csv options
 let g:csv_highlight_column = 'y'
@@ -149,7 +138,6 @@ highlight Folded ctermbg=0 ctermfg=7
 
 hi MatchParen ctermbg=242
 
-" These are just a couple of modifications to the dante colorscheme more to my taste.
 hi TabLine cterm=NONE ctermbg=240
 hi TabLineFill ctermbg=240
 hi Pmenu ctermbg=53
@@ -172,15 +160,10 @@ if !exists("autocommands_loaded")
 	au FileType php setlocal makeprg=php\ -l\ % errorformat=%m\ in\ %f\ on\ line\ %l
 	au FileType php setlocal comments=s1:/*,mb:*,ex:*/,O:#,O:// fo+=roc
 
-	au FileType vcscommit setlocal textwidth=0 fo-=t fo+=rn comments=f1:* wrap
-	au FileType svn setlocal textwidth=0 fo-=t fo+=rn comments=f1:* wrap
-
 	au FileType json setlocal foldmethod=syntax textwidth=0 fo-=t wrap
 	au Syntax  json setlocal foldlevelstart=2 foldlevel=2
 
 	au FileType javascript setlocal foldmethod=syntax
-
-	au filetype cpp setlocal mp=g++\ -Werror\ -ansi\ -pedantic-errors\ %
 
 endif
 " }}}
