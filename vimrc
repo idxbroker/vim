@@ -89,16 +89,13 @@ let NERDSpaceDelims = 1
 
 " set php syntax options
 " EVERY string is treated as a possible mysql query and formatted as such, so this is not a good option.
-let php_sql_query = 0
-let php_html_in_strings = 1
-let php_smart_members = 1
-let php_alt_properties = 1
-let php_alt_construct_parents = 1
-let php_folding = 2
-let php_fold_arrays = 1
-let php_fold_heredoc = 1
-let php_strict_blocks = 1
-let php_empty_construct_error = 1
+let php_sql_query = 0 " Don't highlight SQL in strings.
+let php_sql_heredoc = 1 " Highlight HEREDOCs that have 'SQL' in the name highlight as SQL, defaults to 1
+let php_html_in_strings = 0 " No highlighting HTML in strings, defaults to 0
+let php_html_in_heredoc = 1 " No highlighting HTML in HEREDOCs, defaults to 1
+let php_html_load = 1 " Don't load the HTML syntax at all.  Turns off previous two options and highlighting between ?> and <?php
+let php_parent_error_close = 1 " Highlight parent error ] or )
+let php_folding = 0 " Fold loops, if/elseif/else, switch, try/catch/finally, and functions based on indent level
 
 " php indent options
 let PHP_removeCRwhenUnix = 1

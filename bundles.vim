@@ -91,7 +91,11 @@ NeoBundle 'm2mdas/phpcomplete-extended'
 " PHP Indenting
 NeoBundle '2072/PHP-Indenting-for-VIm'
 
+""" Indenting
+NeoBundle 'swekaj/php-foldexpr.vim'
+
 """ Syntax 
+NeoBundle 'StanAngeloff/php.vim'
 NeoBundle 'elzr/vim-json'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'jelera/vim-javascript-syntax'
