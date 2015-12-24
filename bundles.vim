@@ -6,9 +6,7 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#rc(expand('~/.vim/bundle/'))
-
-call neobundle#rc()
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Github: Use the path ('user/repository')
 " vim.org: Use last portion of URL ('matchit.zip')
@@ -120,3 +118,4 @@ NeoBundleCheck
 "
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Bundle commands are not allowed.
+call neobundle#end()
